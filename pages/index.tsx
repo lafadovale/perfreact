@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { SearchResults } from "@/components/SearchResults";
 
 export default function Home() {
@@ -19,6 +19,10 @@ export default function Home() {
 
     setResults(data);
   }
+
+  const addToWishlist = useCallback(async (id: number) => {
+    console.log(id);
+  }, []);
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function Home() {
             <button type="submit">Buscar</button>
           </form>
 
-          <SearchResults results={results} />
+          <SearchResults results={results} onAddToWishlist={addToWishlist} />
         </div>
       </main>
     </>
